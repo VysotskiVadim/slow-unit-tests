@@ -8,7 +8,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-class ManyStaticMocking {
+class StaticMockingMockk {
     @Before
     fun setup() {
         mockkStatic(::plus)
