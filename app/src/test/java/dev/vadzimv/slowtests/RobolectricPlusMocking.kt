@@ -2,8 +2,6 @@ package dev.vadzimv.slowtests
 
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkStatic
-import io.mockk.unmockkStatic
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -17,13 +15,13 @@ class RobolectricPlusMocking {
     @Before
     fun setup() {
         val mock = mockk<ExampleSmall>()
-        mockkStatic(::plus)
+        mockkStatic(::dev.vadzimv.slowtests.plus)
         every { plus(2, 2) } returns 4
     }
 
     @After
     fun tearDown() {
-        unmockkStatic(::plus)
+        unmockkStatic(::dev.vadzimv.slowtests.plus)
     }
 
     @Test
