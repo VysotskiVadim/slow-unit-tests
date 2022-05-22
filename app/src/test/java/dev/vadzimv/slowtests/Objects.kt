@@ -3,7 +3,7 @@ package dev.vadzimv.slowtests
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class ObjectStubbing {
+class Objects {
 
     val plus = object : Plus {
         override fun doPlus(a: Int, b: Int): Int = a + b
@@ -15,12 +15,7 @@ class ObjectStubbing {
     }
 
     @Test
-    fun `two plus two copy 2`() {
-        assertEquals(4, plus.doPlus(2, 2))
-    }
-
-    @Test
-    fun `two plus two copy 3`() {
+    fun `two plus two copy`() {
         assertEquals(4, plus.doPlus(2, 2))
     }
 }
