@@ -9,7 +9,6 @@ class ObjectMockingMockito {
 
     val plus = mock<Plus> {
         on { doPlus(2, 2) } doReturn  4
-        on { doPlus(3, 3) } doReturn  6
     }
 
     @Test
@@ -18,12 +17,7 @@ class ObjectMockingMockito {
     }
 
     @Test
-    fun `two plus two copy 2`() {
-        assertEquals(4, plus.doPlus(2, 2))
-    }
-
-    @Test
-    fun `two plus two copy 3`() {
+    fun `two plus two copy 1`() {
         assertEquals(4, plus.doPlus(2, 2))
     }
 }
