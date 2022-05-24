@@ -12,32 +12,32 @@ import org.mockito.kotlin.verify
 class ObjectMockingMockito {
 
     @Test
-    fun `two plus two`() {
+    fun `a - two plus two`() {
         val plus = createMockPlus()
         assertEquals(4, plus.doPlus(2, 2))
     }
 
     @Test
-    fun `two plus two copy`() {
+    fun `b - two plus two copy`() {
         val plus = createMockPlus()
         assertEquals(4, plus.doPlus(2, 2))
     }
 
     @Test
-    fun `two plus two copy with verify`() {
+    fun `c - two plus two copy with verify`() {
         val plus = createMockPlus()
         assertEquals(4, plus.doPlus(2, 2))
         verify(plus) { plus.doPlus(2,2) }
     }
 
     @Test
-    fun `two minus two`() {
+    fun `d - two minus two`() {
         val minus = createMockMinus()
         assertEquals(0, minus.doMinus(2, 2))
     }
 
     @Test
-    fun `two minus two copy 1`() {
+    fun `e - two minus two copy 1`() {
         val minus = createMockMinus()
         assertEquals(0, minus.doMinus(2, 2))
     }

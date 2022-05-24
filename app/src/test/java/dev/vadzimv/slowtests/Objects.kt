@@ -6,13 +6,13 @@ import org.junit.Test
 class Objects {
 
     @Test
-    fun `two plus two`() {
+    fun `a - two plus two`() {
         val plus = createPlus()
         assertEquals(4, plus.doPlus(2, 2))
     }
 
     @Test
-    fun `two plus two copy`() {
+    fun `b - two plus two copy`() {
         val plus = createPlus()
         assertEquals(4, plus.doPlus(2, 2))
     }

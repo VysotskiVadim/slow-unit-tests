@@ -5,12 +5,12 @@ import org.junit.Test
 
 class Baseline {
     @Test
-    fun baseline() {
+    fun `a - baseline`() {
         assertEquals(4, 2 + 2)
     }
 
     @Test
-    fun `baseline copy`() {
+    fun `b - baseline copy`() {
         assertEquals(4, 2 + 2)
     }
 }
