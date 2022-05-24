@@ -6,6 +6,7 @@ import org.junit.Test
 import org.junit.runners.MethodSorters
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class ObjectMockingMockito {
@@ -17,9 +18,16 @@ class ObjectMockingMockito {
     }
 
     @Test
-    fun `two plus two copy 1`() {
+    fun `two plus two copy`() {
         val plus = createMockPlus()
         assertEquals(4, plus.doPlus(2, 2))
+    }
+
+    @Test
+    fun `two plus two copy with verify`() {
+        val plus = createMockPlus()
+        assertEquals(4, plus.doPlus(2, 2))
+        verify(plus) { plus.doPlus(2,2) }
     }
 
     @Test
