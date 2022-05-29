@@ -10,33 +10,42 @@ import org.junit.runners.MethodSorters
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class AndroidClassesMockk {
+
     @Test
-    fun `create activity`() {
-        val activity = mockk<Activity>()
+    fun `a - warm up mockk`() {
+        mockk<Any>()
+    }
+
+    open class Activity1 : Activity()
+    open class Activity2 : Activity()
+
+    @Test
+    fun `b - create activity 1`() {
+        val activity = mockk<Activity1>()
     }
 
     @Test
-    fun `create activity relaxed`() {
-        val activity = mockk<Activity>(relaxed = true)
+    fun `c - create activity 2`() {
+        val activity = mockk<Activity2>()
     }
 
     @Test
-    fun `create context`() {
+    fun `d - create context`() {
         val context = mockk<Context>()
     }
 
     @Test
-    fun `create context relaxed`() {
-        val context = mockk<Context>(relaxed = true)
+    fun `e - create context 2`() {
+        val context = mockk<Context>()
     }
 
     @Test
-    fun `create location`() {
+    fun `f - create location`() {
         val location = mockk<Location>()
     }
 
     @Test
-    fun `create location relaxed`() {
-        val location = mockk<Location>(relaxed = true)
+    fun `g - create location 2`() {
+        val location = mockk<Location>()
     }
 }
