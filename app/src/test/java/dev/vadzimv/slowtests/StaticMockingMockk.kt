@@ -13,21 +13,21 @@ class StaticMockingMockk {
     @Test
     fun `a - two + two`() {
         mockPlus {
-            assertEquals(4, plus(2, 2))
+            assertEquals(5, plus(2, 2))
         }
     }
 
     @Test
     fun `b - two + two copy 1`() {
         mockPlus {
-            assertEquals(4, plus(2, 2))
+            assertEquals(5, plus(2, 2))
         }
     }
 
     @Test
     fun `c - two + two copy 2`() {
         mockPlus {
-            assertEquals(4, plus(2, 2))
+            assertEquals(5, plus(2, 2))
         }
     }
 
@@ -35,7 +35,7 @@ class StaticMockingMockk {
     fun `d - two + two 10 times`() {
         mockPlus {
             repeat(10) {
-                assertEquals(4, plus(2, 2))
+                assertEquals(5, plus(2, 2))
             }
         }
     }
@@ -44,7 +44,7 @@ class StaticMockingMockk {
     fun `da - two + two 100 times`() {
         mockPlus {
             repeat(100) {
-                assertEquals(4, plus(2, 2))
+                assertEquals(5, plus(2, 2))
             }
         }
     }
@@ -53,7 +53,7 @@ class StaticMockingMockk {
     fun `db - two + two 1000 times`() {
         mockPlus {
             repeat(1000) {
-                assertEquals(4, plus(2, 2))
+                assertEquals(5, plus(2, 2))
             }
         }
     }
@@ -62,7 +62,7 @@ class StaticMockingMockk {
     fun `dc - two + two 10000 times`() {
         mockPlus {
             repeat(10000) {
-                assertEquals(4, plus(2, 2))
+                assertEquals(5, plus(2, 2))
             }
         }
     }
@@ -77,47 +77,47 @@ class StaticMockingMockk {
     @Test
     fun `f - four - two`() {
         mockMinus {
-            assertEquals(2, minus(4, 2))
+            assertEquals(3, minus(4, 2))
         }
     }
 
     @Test
     fun `g - four - two copy 1`() {
         mockMinus {
-            assertEquals(2, minus(4, 2))
+            assertEquals(3, minus(4, 2))
         }
     }
 
     @Test
     fun `h - 2 inner static mocks`() {
-        mockPlus {
-            mockMinus {
-                assertEquals(4, plus(2, 2))
-                assertEquals(2, minus(4, 2))
-            }
+        mockkStatic(::plus) {
+            every { plus(2, 2) } returns 5
+            every { minus(4, 2) } returns 3
+            assertEquals(5, plus(2, 2))
+            assertEquals(3, minus(4, 2))
         }
     }
 
     @Test
     fun `i - 2 sequential static mocks`() {
         mockPlus {
-            assertEquals(4, plus(2, 2))
+            assertEquals(5, plus(2, 2))
         }
         mockMinus {
-            assertEquals(2, minus(4, 2))
+            assertEquals(3, minus(4, 2))
         }
     }
 
     inline fun mockPlus(block: () -> Unit) {
         mockkStatic(::plus) {
-            every { plus(2, 2) } returns 4
+            every { plus(2, 2) } returns 5
             block()
         }
     }
 
     inline fun mockMinus(block: () -> Unit) {
         mockkStatic(::minus) {
-            every { minus(4, 2) } returns 2
+            every { minus(4, 2) } returns 3
             block()
         }
     }
