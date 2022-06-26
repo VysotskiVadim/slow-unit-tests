@@ -1,14 +1,16 @@
 package dev.vadzimv.slowtests
 
+import io.mockk.declaringKotlinFile
 import io.mockk.every
 import io.mockk.mockkStatic
 import org.junit.Assert.assertEquals
 import org.junit.FixMethodOrder
 import org.junit.Test
 import org.junit.runners.MethodSorters
+import org.mockito.Mockito
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-class StaticMockingMockk {
+class StaticMockingMockito {
 
     @Test
     fun `a - two + two`() {
@@ -90,11 +92,12 @@ class StaticMockingMockk {
 
     @Test
     fun `h - 2 inner static mocks`() {
-        mockPlus {
-            mockMinus {
-                assertEquals(4, plus(2, 2))
-                assertEquals(2, minus(4, 2))
-            }
+        Mockito.mockStatic(::plus.declaringKotlinFile.java).use {
+            it.`when`<Int> { plus(2, 2) }.thenReturn(4)
+            it.`when`<Int> { minus(4, 2) }.thenReturn(2)
+
+            assertEquals(4, plus(2, 2))
+            assertEquals(2, minus(4, 2))
         }
     }
 
@@ -109,17 +112,18 @@ class StaticMockingMockk {
     }
 
     inline fun mockPlus(block: () -> Unit) {
-        mockkStatic(::plus) {
-            every { plus(2, 2) } returns 4
+        Mockito.mockStatic(::plus.declaringKotlinFile.java).use {
+            it.`when`<Int> { plus(2, 2) }.thenReturn(4)
             block()
         }
     }
 
     inline fun mockMinus(block: () -> Unit) {
-        mockkStatic(::minus) {
-            every { minus(4, 2) } returns 2
+        Mockito.mockStatic(::minus.declaringKotlinFile.java).use {
+            it.`when`<Int> { minus(4, 2) }.thenReturn(2)
             block()
         }
     }
 }
+
 
